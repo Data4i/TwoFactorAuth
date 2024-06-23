@@ -1,0 +1,28 @@
+{% include "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>Setup Two-Factor Authentication</h1>
+                </div>
+                <div class="card-body text-center">
+                    <p>Scan the QR code below with your Google Authenticator app:</p>
+                    <img src="data:image/png;base64,{{ qr_code_base64 }}" alt="QR Code" class="img-fluid">
+                    <p>Once you have scanned the QR code, you can use your authenticator app to generate the OTP for login.</p>
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                </div>
+                
+                {% if error %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
